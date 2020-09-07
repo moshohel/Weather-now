@@ -35,12 +35,7 @@ const UiUpdate = (data) => {
     // }
 
     // Ternary Operator
-    let timeSrc = weather.IsDayTime ? timeSrc = 'img/day.svg' : timeSrc = 'img/night.svg';
-    if (weather.IsDayTime) {
-        timeSrc = 'img/day.svg';
-    } else {
-        timeSrc = 'img/night.svg';
-    }
+    let timeSrc = weather.IsDayTime ? 'img/day.svg' : 'img/night.svg';
 
     time.setAttribute('src', timeSrc);
 
@@ -82,4 +77,13 @@ cityForm.addEventListener('submit', e => {
             console.log(err);
         });
 
+    // set lacal storage
+    localStorage.setItem('city', city);
 });
+
+
+if (localStorage.getItem('city')) {
+    updateCity(localStorage.getItem('city'))
+        .then(data => UiUpdate(data))
+        .catch(err => console.log(err));
+}
