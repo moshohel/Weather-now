@@ -1,5 +1,5 @@
 // api key from accu weather
-const key = 'OdJlk8vaKGxy0ZywRh0PKwfDw73lqO7O';
+const key = '1lVmy5meSp8KAg4FdXCy5M601nGhOGc5';
 
 // get weather infomation
 const getWeather = async (id) => {
@@ -24,15 +24,15 @@ const getCity = async (city) => {
     const response = await fetch(base + query);
     const data = await response.json();
 
-    console.log(data[0]);
+    //console.log(data[0]);
 
     return data[0];
 };
 
-getCity('DHAKA').then(data => {
-    console.log(`Dhaka key : ${data.Key}`);
-    return getWeather(data.Key);
-}).then(data => {
-    console.log(`Dhaka weather is today : ${data.WeatherText}`);
-}).catch(err => console.log(err));
+// getCity('DHAKA').then(data => {
+//     console.log(`Dhaka key : ${data.Key}`);
+//     return getWeather(data.Key);
+// }).then(data => {
+//     console.log(`Dhaka weather is today : ${data.WeatherText}`);
+// }).catch(err => console.log(err));
 
