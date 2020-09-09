@@ -3,7 +3,7 @@ const card = document.querySelector('.card');
 const details = document.querySelector('.details');
 const time = document.querySelector('img.time');
 const icon = document.querySelector('.icon img');
-
+const apiCall = new ApiCall();
 
 const UiUpdate = (data) => {
 
@@ -46,21 +46,21 @@ const UiUpdate = (data) => {
 
 };
 
-const updateCity = async city => {
-    //console.log(city);
-    const cityData = await getCity(city);
-    const weather = await getWeather(cityData.Key);
+// const updateCity = async city => {
+//     //console.log(city);
+//     const cityData = await getCity(city);
+//     const weather = await getWeather(cityData.Key);
 
-    // return {
-    //     cityData: cityData,
-    //     weather: weather
-    // }
+//     // return {
+//     //     cityData: cityData,
+//     //     weather: weather
+//     // }
 
-    // Object Shorthand Notation
-    // object key and value name same
-    return { cityData, weather };
+//     // Object Shorthand Notation
+//     // object key and value name same
+//     return { cityData, weather };
 
-};
+// };
 
 cityForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -69,8 +69,8 @@ cityForm.addEventListener('submit', e => {
     const city = cityForm.city.value.trim();
     cityForm.reset();
 
-
-    updateCity(city)
+    // update the UI with new city
+    apiCall.updateCity(city)
         .then(data => {
             UiUpdate(data);
         }).catch(err => {
@@ -83,7 +83,7 @@ cityForm.addEventListener('submit', e => {
 
 
 if (localStorage.getItem('city')) {
-    updateCity(localStorage.getItem('city'))
+    apiCall.updateCity(localStorage.getItem('city'))
         .then(data => UiUpdate(data))
         .catch(err => console.log(err));
 }
